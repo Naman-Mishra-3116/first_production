@@ -15,7 +15,7 @@ const MainNavigation = () => {
 
   return (
     <div>
-      <header className="mt-[3rem] flex flex-col items-center justify-center">
+      <header className="mt-[1.4rem] flex flex-col items-center justify-center">
         <h2 className="flex font-custom text-[33px] font-bold items-center">
           <p>
             TypingTest<span className="text-[#1585e0]">.io</span>

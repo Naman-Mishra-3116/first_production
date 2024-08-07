@@ -12,4 +12,6 @@ router.get("/getLoggedUserInfo", userInformationController);
 
 router.get("/resetPassword/:id/:token", resetPasswordControllerFunction);
 
+router.get("/getLeaderBoardData");
+
 export { router as getRouter };

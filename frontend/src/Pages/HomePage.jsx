@@ -74,7 +74,7 @@ const HomePage = ({ updateKey }) => {
         submitWord={submitWord}
       />
 
-      <div className="flex gap-[40px] mt-[3rem] ml-auto mr-auto w-[80%] justify-center items-center">
+      <div className="flex gap-[40px] mt-[4rem] ml-auto mr-auto w-[80%] justify-center items-center">
         <SummaryList
           errorChar={errorChar}
           correctChar={correctChar}

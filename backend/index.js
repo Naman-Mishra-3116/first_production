@@ -7,6 +7,12 @@ import { postRouter } from "./Routes/postRouter.router.js";
 import { getRouter } from "./Routes/getRouter.router.js";
 import { deleteRouter } from "./Routes/deleteRouter.router.js";
 
+const test = {
+  origin: [""],
+  methods: ["GET", "POST", "DELETE", "PATCH", "PUT"],
+  credentials: true,
+};
+
 /**
  * @config for hanlding environement variables in the project
  */
@@ -29,13 +35,7 @@ const PORT = process.env.PORT || 5000;
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: [""],
-    methods: ["GET", "POST", "DELETE", "PATCH", "PUT"],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 /**
  * @router = get for testing purpose.

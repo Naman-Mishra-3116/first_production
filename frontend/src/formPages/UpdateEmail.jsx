@@ -1,8 +1,13 @@
 import React from "react";
 import Input from "../UI/Input";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { createToast } from "./../../utils/createToast";
+import { useNavigate } from "react-router-dom";
+import { authFunction } from "../../Store/authentication.store";
 const UpdateEmail = () => {
   const email = useSelector((state) => state.valid.email);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const onClickEmailChangeButton = async (event) => {
     try {
       event.preventDefault();
@@ -20,8 +25,27 @@ const UpdateEmail = () => {
         }),
       });
       const { success, error, message } = await response.json();
+      if (success && message === "Email Updated Successfully!") {
+        createToast(message, "success");
+        localStorage.removeItem("token");
+        dispatch(
+          authFunction.setAllData({
+            email: "",
+            auth: false,
+            token: "",
+            name: "",
+          })
+        );
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
+      } else if (error && success === false) {
+        createToast(message, "error");
+      } else {
+        createToast(message, "info");
+      }
     } catch (error) {
-      console.log(error.message);
+      createToast(error.message, "error");
     }
   };
 

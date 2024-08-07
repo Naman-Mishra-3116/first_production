@@ -9,6 +9,9 @@ import { changePasswordControllerFunction } from "../Controllers/changePassword.
 import { submitIndiviudalTestController } from "../Controllers/submitIndividualTest.controller.js";
 import { forgetPasswordControllerFunction } from "../Controllers/forgetPassword.controller.js";
 import { forgetPasswordPostRouter } from "../Controllers/forgetPasswordPostRouter.js";
+import { updateEmailControllerFunction } from "./../Controllers/updateEmailController.js";
+import { emailValidationMiddleWareForUpdateEmail } from "./../Middlewares/updateEmail.js";
+
 const router = Router();
 
 /**
@@ -55,5 +58,12 @@ router.post(
 router.post("/forgetPassword", forgetPasswordControllerFunction);
 
 router.post("/resetPassword/:id/:token", forgetPasswordPostRouter);
+
+router.post(
+  "/auth/changeEmail",
+  enusreAuthenticatedMiddleware,
+  emailValidationMiddleWareForUpdateEmail,
+  updateEmailControllerFunction
+);
 
 export { router as postRouter };
