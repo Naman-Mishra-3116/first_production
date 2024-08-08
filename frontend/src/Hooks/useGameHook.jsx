@@ -98,10 +98,11 @@ export const useGameHook = function (duration) {
       typedWord.current += 1;
       graphData.current.push({
         wpm: Math.round((correctChar / 4) * (60 / duration)),
-        accuracy:
-          Math.round((correctChar * 100) / (correctChar + errorChar)) === NaN
-            ? 0
-            : Math.round((correctChar * 100) / (correctChar + errorChar)),
+        accuracy: Number.isNaN(
+          Math.round((correctChar * 100) / (correctChar + errorChar))
+        )
+          ? 0
+          : Math.round((correctChar * 100) / (correctChar + errorChar)),
         cWords: correctWords.current,
         iWords: incorrectWords.current,
         wordNumber: totalTypedWord.current,
@@ -140,6 +141,6 @@ export const useGameHook = function (duration) {
     onChangeInputHandler,
     onKeyDownHandler,
     graphData,
-    submitWord
+    submitWord,
   };
 };

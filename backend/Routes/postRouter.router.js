@@ -11,6 +11,7 @@ import { forgetPasswordControllerFunction } from "../Controllers/forgetPassword.
 import { forgetPasswordPostRouter } from "../Controllers/forgetPasswordPostRouter.js";
 import { updateEmailControllerFunction } from "./../Controllers/updateEmailController.js";
 import { emailValidationMiddleWareForUpdateEmail } from "./../Middlewares/updateEmail.js";
+import { addToLeaderboard } from "../Controllers/addDataToLeaderBoardController.js";
 
 const router = Router();
 
@@ -66,4 +67,5 @@ router.post(
   updateEmailControllerFunction
 );
 
+router.post("/addLeaderBoard", enusreAuthenticatedMiddleware, addToLeaderboard);
 export { router as postRouter };

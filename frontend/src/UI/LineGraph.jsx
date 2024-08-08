@@ -30,7 +30,6 @@ const LineGraph = ({ data, time, errorChar, correctChar, raw }) => {
   const isAuthticated = useSelector((state) => state.valid.isAuthticated);
 
   const token = useSelector((state) => state.valid.jwtToken);
-;
 
   useEffect(() => {
     const submitTestDataForLoggedInUser = async function () {
@@ -75,6 +74,7 @@ const LineGraph = ({ data, time, errorChar, correctChar, raw }) => {
         );
       }
     };
+
     if (isAuthticated) {
       submitTestDataForLoggedInUser();
     } else {
@@ -82,11 +82,54 @@ const LineGraph = ({ data, time, errorChar, correctChar, raw }) => {
     }
   }, [time, token, isAuthticated]);
 
+  useEffect(() => {
+    const submitDataForLeaderBoard = async function () {
+      try {
+        const { wpm, accuracy } = data[data.length - 1];
+        const taken = new Intl.DateTimeFormat("en-IN", {
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+          second: "2-digit",
+          hour12: true,
+        }).format(new Date());
+        console.log(wpm, accuracy, time, taken);
+        const response = await fetch("http://localhost:5000/addLeaderBoard", {
+          method: "POST",
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            wpm,
+            taken,
+            accuracy,
+            time,
+          }),
+        });
+        const { success,error,message } = await response.json();
+        if (success) {
+          return;
+        } else if (error) {
+          console.log(message);
+          throw new Error(error.message);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    if (isAuthticated) {
+      submitDataForLeaderBoard();
+    }
+  }, [time, token, isAuthticated]);
+
   const wordPerMinuteData = data.map((item) => item.wpm);
   const wordNumber = data.map((item) => item.wordNumber);
   const incorrectWords = data.map((item) => item.iWords);
-  wordNumber[wordNumber.length-1] = wordNumber[wordNumber.length-2]+1;
-  
+  wordNumber[wordNumber.length - 1] = wordNumber[wordNumber.length - 2] + 1;
 
   const mapingData = {
     labels: wordNumber,

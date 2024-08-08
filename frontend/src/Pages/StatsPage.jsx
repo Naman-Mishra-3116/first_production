@@ -56,14 +56,14 @@ const StatsPage = () => {
       </p>
       {isAuth === true && data !== null && (
         <table className="w-[80%] ml-auto mr-auto mt-5 font-normal">
-          <thead className="bg-secondary-back text-lg font-normal rounded-lg">
+          <thead className="bg-secondary-back text-md font-normal rounded-lg">
             <tr className="rounded-sm">
-              <th className="p-3">WPM</th>
-              <th className="p-3">Accuracy</th>
-              <th className="p-3">Raw WPM</th>
-              <th className="p-3">Characters</th>
-              <th className="p-3">Time</th>
-              <th className="p-3">Taken</th>
+              <th className="p-[9px]">WPM</th>
+              <th className="p-[9px]">Accuracy</th>
+              <th className="p-[9px]">Raw WPM</th>
+              <th className="p-[9px]">Characters</th>
+              <th className="p-[9px]">Time</th>
+              <th className="p-[9px]">Taken</th>
             </tr>
           </thead>
           <tbody>

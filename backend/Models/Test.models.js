@@ -39,8 +39,8 @@ const TestSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+    expires: 10,
   },
 });
-TestSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 });
 
 export const Test = new mongoose.model("tests", TestSchema);
