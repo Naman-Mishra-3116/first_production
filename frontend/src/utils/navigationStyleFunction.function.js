@@ -1,6 +1,6 @@
 export const styleFunctionForMiddleLink = ({ isActive }) => {
   return isActive
-    ? "bg-[#1a1a1a] px-4 py-[10px] rounded-md self-center"
+    ? "bg-[#1a1a1a] px-4 py-[10px] rounded-md self-center border-[#2b2b2b]"
     : "px-4 py-[10px] rounded-md hover:bg-[#1a1a1a] self-center";
 };
 
