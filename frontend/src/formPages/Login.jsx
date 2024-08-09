@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Input from "../UI/Input";
 import NavigationFor from "../UI/NavigationFor";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import { link } from "../../utils/backLink.js";
 const Login = () => {
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
-
+  const [loginSuccess, setLoginSuccess] = useState(false);
   const onClickLoginButton = async function (event) {
     event.preventDefault();
     try {
@@ -34,9 +34,7 @@ const Login = () => {
       console.log({ message, success, jwtToken, UserEmail, name, error });
       if (success) {
         createToast(message, "success");
-        setTimeout(() => {
-          navigateTo("/");
-        }, 2000);
+        setLoginSuccess(true);
         localStorage.setItem("token", jwtToken);
         dispatch(
           authFunction.setAllData({
@@ -55,6 +53,14 @@ const Login = () => {
       createToast(error.message, "error");
     }
   };
+
+  useEffect(() => {
+    if (loginSuccess) {
+      setTimeout(() => {
+        navigateTo("/");
+      }, 1000);
+    }
+  }, [loginSuccess, navigateTo]);
 
   return (
     <div className="flex flex-col items-center">

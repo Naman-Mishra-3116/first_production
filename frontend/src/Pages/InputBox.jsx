@@ -43,7 +43,8 @@ const InputBox = forwardRef(
         });
         setData(data.current);
         ref.current.blur();
-        // window.scrollTo({ top: 0, behavior: "smooth" });
+        ref.current.style.pointerEvents = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
       if (hasStarted) {
@@ -128,5 +129,3 @@ const InputBox = forwardRef(
 );
 
 export default InputBox;
-
-
