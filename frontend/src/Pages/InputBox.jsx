@@ -36,11 +36,12 @@ const InputBox = forwardRef(
       let timerInterval;
       if (timer === 0 && hasStarted === true) {
         data.current.push({
-          wpm: Math.round((correctChar / 5) * (60 / duration)),
+          wpm: Math.round(correctChar / 5 / (duration / 60)),
           accuracy: Math.round((correctChar * 100) / (correctChar + errorChar)),
           cWords: rightWords,
           iWords: wrongWords,
         });
+        console.log(data.current);
         setData(data.current);
         ref.current.blur();
         ref.current.style.pointerEvents = "none";
