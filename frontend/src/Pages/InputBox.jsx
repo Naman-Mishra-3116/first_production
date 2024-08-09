@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useRef, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import { FiRefreshCcw } from "react-icons/fi";
+import { useInputHook } from "../Hooks/useInputHook";
 
 const InputBox = forwardRef(
   (
@@ -20,66 +21,28 @@ const InputBox = forwardRef(
     },
     ref
   ) => {
-    const iconRef = useRef();
-    const [timer, setTimer] = useState(duration);
-    const [hasStarted, setHasStarted] = useState(false);
-    const [wpm, showSpeed] = useState(showWPM);
-    const [timing, showTiming] = useState(showTimer);
-
-    useEffect(() => {
-      setTimer(duration);
-      showSpeed(showWPM);
-      showTiming(showTimer);
-    }, [duration, showTimer, showWPM]);
-
-    useEffect(() => {
-      let timerInterval;
-      if (timer === 0 && hasStarted === true) {
-        data.current.push({
-          wpm: Math.round(correctChar / 5 / (duration / 60)),
-          accuracy: Math.round((correctChar * 100) / (correctChar + errorChar)),
-          cWords: rightWords,
-          iWords: wrongWords,
-        });
-        console.log(data.current);
-        setData(data.current);
-        ref.current.blur();
-        ref.current.style.pointerEvents = "none";
-      }
-
-      if (hasStarted) {
-        if (timer > 0) {
-          timerInterval = setInterval(() => {
-            setTimer((prevTimer) => prevTimer - 1);
-          }, 1000);
-        } else {
-          clearInterval(timerInterval);
-        }
-      }
-
-      return () => clearInterval(timerInterval);
-    }, [timer, hasStarted]);
-
-    const onClickResetButton = () => {
-      if (iconRef.current) {
-        iconRef.current.classList.add("rotate-animation");
-
-        setTimeout(() => {
-          if (iconRef.current) {
-            iconRef.current.classList.remove("rotate-animation");
-          }
-          updateKey((prev) => String(prev + 1).toString());
-          setHasStarted(false);
-        }, 600);
-      }
-    };
-
-    const handleInputChange = (e) => {
-      if (!hasStarted) {
-        setHasStarted(true);
-      }
-      onChangeInputHandler(e);
-    };
+    const {
+      iconRef,
+      timer,
+      wpm,
+      timing,
+      calculateWPM,
+      handleInputChange,
+      onClickResetButton,
+    } = useInputHook(
+      duration,
+      showWPM,
+      showTimer,
+      updateKey,
+      data,
+      setData,
+      errorChar,
+      correctChar,
+      rightWords,
+      wrongWords,
+      onChangeInputHandler,
+      ref
+    );
 
     return (
       <div className="w-[80%] flex gap-2 ml-auto mr-auto mt-4">
@@ -97,13 +60,11 @@ const InputBox = forwardRef(
 
         <div className="h-[60px] bg-secondary-back p-5 mr-[12px] rounded-md w-[120px] text-[22px] flex justify-center items-center">
           <span>
-            {" "}
             {wpm ? (
               <>
-                {Math.round(correctChar / 5 / (duration / 60))}{" "}
-                <span className="text-[14px]">WPM</span>
+                {calculateWPM()} <span className="text-[14px]">WPM</span>
               </>
-            ) : null}{" "}
+            ) : null}
           </span>
         </div>
         <div className="h-[60px] w-[120px] bg-secondary-back p-5 rounded-md text-[22px] mr-[12px] flex justify-center items-center">
