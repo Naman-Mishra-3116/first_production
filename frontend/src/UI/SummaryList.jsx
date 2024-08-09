@@ -1,12 +1,12 @@
 import React from "react";
 
-const SummaryList = ({correctChar,errorChar,time,data}) => {
+const SummaryList = ({ correctChar, errorChar, time, data }) => {
   return (
     <div>
       <ul className="flex flex-col gap-2">
         <li className="text-3xl mb-4">
           <span className="font-bold text-[40px]">
-            {data !== null ? Math.round((correctChar / 4) * (60 / time)) : 0}{" "}
+            {data !== null ? Math.round(correctChar / 5 / (time / 60)) : 0}{" "}
             <span className="font-normal text-2xl ml-2">WPM</span>
           </span>
         </li>
@@ -16,7 +16,7 @@ const SummaryList = ({correctChar,errorChar,time,data}) => {
             <span>&mdash;</span>
           ) : (
             <span>
-              {Math.round((correctChar + errorChar) / 4 / (time / 60))}
+              {Math.round((correctChar + errorChar) / 5 / (time / 60))}
             </span>
           )}
         </li>
