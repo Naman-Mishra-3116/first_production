@@ -20,9 +20,12 @@ import { useDispatch } from "react-redux";
 import { authFunction } from "../Store/authentication.store";
 import { getId } from "./utils/getId";
 import { link } from "../utils/backLink.js";
+import { useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
+  const isValid = useSelector((state) => state.valid.isAuthticated);
+
   const getLoginUserData = async function () {
     try {
       const token = localStorage.getItem("token");
@@ -86,7 +89,12 @@ function App() {
         { path: "/privacy", element: <PrivacyPolicy /> },
         {
           path: "/settings",
-          element: <SettingsPage />,
+          element:
+            isValid === true ? (
+              <SettingsPage />
+            ) : (
+              <HomePage key={currentKey} updateKey={setCurrentKey} />
+            ),
           errorElement: <ErrorPage />,
           children: [
             { index: true, element: <UpdateEmail /> },
