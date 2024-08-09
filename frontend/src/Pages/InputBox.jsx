@@ -43,7 +43,7 @@ const InputBox = forwardRef(
         });
         setData(data.current);
         ref.current.blur();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        // window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
       if (hasStarted) {

@@ -34,6 +34,9 @@ const Login = () => {
       console.log({ message, success, jwtToken, UserEmail, name, error });
       if (success) {
         createToast(message, "success");
+        setTimeout(() => {
+          navigateTo("/");
+        }, 2000);
         localStorage.setItem("token", jwtToken);
         dispatch(
           authFunction.setAllData({
@@ -43,9 +46,6 @@ const Login = () => {
             email: UserEmail,
           })
         );
-        setTimeout(() => {
-          navigateTo("/");
-        }, 3000);
       } else if (!success) {
         createToast(message, "error");
       } else if (error) {

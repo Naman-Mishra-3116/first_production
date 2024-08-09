@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import video from "/habibi.gif";
+import video from "/logo.gif";
 
 import {
   styleFunctionForFirstLink,
