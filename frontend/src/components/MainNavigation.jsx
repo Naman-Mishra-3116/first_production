@@ -21,7 +21,7 @@ const MainNavigation = () => {
             TypingTest<span className="text-[#1585e0]">.io</span>
             <span className="font-custom font-normal text-[20px] ml-3">by</span>
           </p>
-          <NavLink to={"https://github.com/Naman-Mishra-3116/ReactTyping"}>
+          <NavLink to={"https://github.com/Naman-Mishra-3116"}>
             <img
               src={video}
               alt="logo with the name"
@@ -44,11 +44,7 @@ const MainNavigation = () => {
           >
             LeaderBoard
           </NavLink>
-          <NavLink
-            to={"/stats"}
-            className={styleFunctionForMiddleLink}
-            end
-          >
+          <NavLink to={"/stats"} className={styleFunctionForMiddleLink} end>
             Stats
           </NavLink>
           <NavLink to={"/about"} end className={styleFunctionForMiddleLink}>

@@ -40,7 +40,6 @@ const InputBox = forwardRef(
           accuracy: Math.round((correctChar * 100) / (correctChar + errorChar)),
           cWords: rightWords,
           iWords: wrongWords,
-          test: "hello world",
         });
         setData(data.current);
         ref.current.blur();
@@ -109,9 +108,9 @@ const InputBox = forwardRef(
         <div className="h-[60px] w-[120px] bg-secondary-back p-5 rounded-md text-[22px] mr-[12px] flex justify-center items-center">
           <span>
             {timing
-              ? `${Math.floor(timer / 60)}:${
-                  Math.floor(timer % 60) === 0 ? "00" : Math.floor(timer % 60)
-                }`
+              ? `${Math.floor(timer / 60)}:${Math.floor(timer % 60)
+                  .toString()
+                  .padStart(2, "0")}`
               : null}
           </span>
         </div>
@@ -129,3 +128,5 @@ const InputBox = forwardRef(
 );
 
 export default InputBox;
+
+

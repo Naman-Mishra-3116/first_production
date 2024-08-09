@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useMemo } from "react";
 import useTyping from "react-typing-game-hook";
 import { generate } from "random-words";
 
-const generateRandomWords = () => generate(350).join(" ");
+const generateRandomWords = () => generate(1000).join(" ");
 
 export const useGameHook = function (duration) {
   const divRef = useRef(null);
