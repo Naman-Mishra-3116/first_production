@@ -39,7 +39,7 @@ const TestSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    expires: 10,
+    expires: 7200,
   },
 });
 
