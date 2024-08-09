@@ -78,7 +78,7 @@ export const useGameHook = function (duration) {
       setTypingInput("");
       setTypeWrong(false);
 
-      if (cursorPoint + 100 >= maxWidth.current || typedWord.current > 14) {
+      if (cursorPoint + 100 >= maxWidth.current || typedWord.current > 12) {
         const elements = document.querySelectorAll(".typed");
         elements.forEach((element) => {
           element.classList.add("scroll-out");

@@ -58,7 +58,7 @@ const Login = () => {
     if (loginSuccess) {
       setTimeout(() => {
         navigateTo("/");
-      }, 1000);
+      }, 2000);
     }
   }, [loginSuccess, navigateTo]);
 

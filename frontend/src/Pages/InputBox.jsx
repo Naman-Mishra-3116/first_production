@@ -44,7 +44,6 @@ const InputBox = forwardRef(
         setData(data.current);
         ref.current.blur();
         ref.current.style.pointerEvents = "none";
-        window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
       if (hasStarted) {
@@ -100,7 +99,7 @@ const InputBox = forwardRef(
             {" "}
             {wpm ? (
               <>
-                {Math.round((correctChar / 4) * (60 / duration))}{" "}
+                {Math.round(correctChar / 5 / (duration / 60))}{" "}
                 <span className="text-[14px]">WPM</span>
               </>
             ) : null}{" "}
