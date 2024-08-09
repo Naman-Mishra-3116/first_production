@@ -8,9 +8,7 @@ const LeaderBoard = () => {
   useEffect(() => {
     const fetchLeaderBoardData = async () => {
       try {
-        const response = await fetch(
-          `${link}/getLeaderBoardData`
-        );
+        const response = await fetch(`${link}/getLeaderBoardData`);
         const { message, error, success, data } = await response.json();
         if (success === true) {
           setData(data);
@@ -31,7 +29,7 @@ const LeaderBoard = () => {
       <table className="w-[80%] ml-auto mr-auto mt-5 font-normal">
         <thead className="bg-secondary-back text-md font-normal rounded-lg">
           <tr className="rounded-sm">
-            <th className="p-[9.5px]">Rank</th>
+            <th className="p-[7.5px]">Rank</th>
             <th className="p-[7.5px]">User</th>
             <th className="p-[7.5px]">WPM</th>
             <th className="p-[7.5px]">Accuracy</th>
@@ -40,11 +38,7 @@ const LeaderBoard = () => {
           </tr>
         </thead>
         <tbody>
-          {data === null ? (
-            <tr>
-              <td>Fetching data please wait</td>
-            </tr>
-          ) : (
+          {data &&
             data.map((item, index) => {
               let rank = index + 1;
               if (index === 0) {
@@ -66,10 +60,10 @@ const LeaderBoard = () => {
                   user={item.name}
                 />
               );
-            })
-          )}
+            })}
         </tbody>
       </table>
+      {data === null ? <p className="text-center mt-4 text-lg">Fetching Data <span className="animate-pulse">...</span></p> : null}
     </div>
   );
 };
