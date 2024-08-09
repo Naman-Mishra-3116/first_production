@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { createToast } from "../../utils/createToast";
 
+import { link } from "./../../utils/backLink";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -45,7 +46,7 @@ const LineGraph = ({ data, time, errorChar, correctChar, raw }) => {
           second: "2-digit",
           hour12: true,
         }).format(new Date());
-        const response = await fetch("http://localhost:5000/test/submitTest", {
+        const response = await fetch(`${link}/test/submitTest`, {
           method: "POST",
           headers: {
             Authorization: token,
@@ -96,7 +97,7 @@ const LineGraph = ({ data, time, errorChar, correctChar, raw }) => {
           hour12: true,
         }).format(new Date());
         console.log(wpm, accuracy, time, taken);
-        const response = await fetch("http://localhost:5000/addLeaderBoard", {
+        const response = await fetch(`${link}/addLeaderBoard`, {
           method: "POST",
           headers: {
             Authorization: token,
@@ -109,7 +110,7 @@ const LineGraph = ({ data, time, errorChar, correctChar, raw }) => {
             time,
           }),
         });
-        const { success,error,message } = await response.json();
+        const { success, error, message } = await response.json();
         if (success) {
           return;
         } else if (error) {

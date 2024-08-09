@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { authFunction } from "../Store/authentication.store";
 import { getId } from "./utils/getId";
+import { link } from "../utils/backLink.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,15 +27,12 @@ function App() {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        const response = await fetch(
-          "http://localhost:5000/getLoggedUserInfo",
-          {
-            method: "GET",
-            headers: {
-              Authorization: token,
-            },
-          }
-        );
+        const response = await fetch(`${link}/getLoggedUserInfo`, {
+          method: "GET",
+          headers: {
+            Authorization: token,
+          },
+        });
         const {
           success,
           error,

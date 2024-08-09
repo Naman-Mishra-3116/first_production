@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { createToast } from "../../utils/createToast";
 import { useDispatch } from "react-redux";
 import { authFunction } from "../../Store/authentication.store";
+import { link } from "../../utils/backLink.js";
 
 const Login = () => {
   const navigateTo = useNavigate();
@@ -15,7 +16,7 @@ const Login = () => {
     try {
       const fd = new FormData(event.target);
       const { email, password } = Object.fromEntries(fd.entries());
-      const response = await fetch("http://localhost:5000/auth/login", {
+      const response = await fetch(`${link}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

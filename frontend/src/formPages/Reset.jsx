@@ -2,6 +2,7 @@ import React from "react";
 import Input from "../UI/Input";
 import NavigationFor from "../UI/NavigationFor";
 import { createToast } from "../../utils/createToast";
+import { link } from "../../utils/backLink";
 
 const Reset = () => {
  
@@ -10,7 +11,7 @@ const Reset = () => {
     event.preventDefault();
     const fd = new FormData(event.target);
     const { email } = Object.fromEntries(fd.entries());
-    const response = await fetch("http://localhost:5000/forgetPassword", {
+    const response = await fetch(`${link}/forgetPassword`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

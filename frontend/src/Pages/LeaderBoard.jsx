@@ -2,20 +2,19 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { createToast } from "../../utils/createToast";
 import LeaderRow from "../UI/LeaderRow";
-
+import { link } from "../../utils/backLink";
 const LeaderBoard = () => {
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchLeaderBoardData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/getLeaderBoardData"
+          `${link}/getLeaderBoardData`
         );
         const { message, error, success, data } = await response.json();
         if (success === true) {
           setData(data);
         } else if (error) {
-          console.log(message);
           createToast(message, "error");
         }
       } catch (error) {

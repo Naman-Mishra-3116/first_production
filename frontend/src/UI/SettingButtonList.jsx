@@ -24,7 +24,7 @@ const SettingButtonList = ({
           settingFunction={setTime}
           title={"Time Duration"}
           storageReference={"time"}
-          defaultSettingIndex={+localStorage.getItem("time") ?? 2}
+          defaultSettingIndex={+localStorage.getItem("time")}
           updateKey={updateKey}
         />
         <SettingButton

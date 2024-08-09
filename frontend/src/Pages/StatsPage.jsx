@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Row from "../UI/Row";
+import { link } from "../../utils/backLink";
 
 const StatsPage = () => {
   const [data, setData] = useState(null);
@@ -12,7 +13,7 @@ const StatsPage = () => {
   useEffect(() => {
     const getDataAboutUser = async function () {
       try {
-        const response = await fetch("http://localhost:5000/getTodayStats", {
+        const response = await fetch(`${link}/getTodayStats`, {
           method: "GET",
           headers: {
             Authorization: token,

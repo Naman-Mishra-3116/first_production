@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createToast } from "../../utils/createToast";
+import { link } from "../../utils/backLink";
 
 const SettingsNavigation = () => {
   const token = useSelector((state) => state.valid.jwtToken);
@@ -59,7 +60,7 @@ const SettingsNavigation = () => {
               animation: "scale",
             }).then((answer) => {
               if (answer) {
-                fetch("http://localhost:5000/auth/deleteUser", {
+                fetch(`${link}/auth/deleteUser`, {
                   method: "DELETE",
                   headers: {
                     Authorization: token,

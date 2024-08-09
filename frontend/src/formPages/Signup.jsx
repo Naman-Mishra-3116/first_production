@@ -3,6 +3,7 @@ import Input from "../UI/Input";
 import NavigationFor from "../UI/NavigationFor";
 import { createToast } from "../../utils/createToast";
 import { useNavigate } from "react-router-dom";
+import { link } from "../../utils/backLink";
 
 const Signup = () => {
   const navigateTo = useNavigate();
@@ -12,7 +13,7 @@ const Signup = () => {
     try {
       const fd = new FormData(event.target);
       const { email, username, password } = Object.fromEntries(fd.entries());
-      const response = await fetch("http://localhost:5000/auth/signup", {
+      const response = await fetch(`${link}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createToast } from "./../../utils/createToast";
 import { useNavigate } from "react-router-dom";
 import { authFunction } from "../../Store/authentication.store";
+import { link } from "../../utils/backLink";
 const UpdateEmail = () => {
   const email = useSelector((state) => state.valid.email);
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const UpdateEmail = () => {
       const fd = new FormData(event.target);
       const { email } = Object.fromEntries(fd.entries());
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/auth/changeEmail", {
+      const response = await fetch(`${link}/auth/changeEmail`, {
         method: "POST",
         headers: {
           Authorization: token,

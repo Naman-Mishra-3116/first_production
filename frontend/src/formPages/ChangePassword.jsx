@@ -4,6 +4,7 @@ import { createToast } from "../../utils/createToast";
 import { useDispatch } from "react-redux";
 import { authFunction } from "../../Store/authentication.store";
 import { useNavigate } from "react-router-dom";
+import { link } from "../../utils/backLink";
 const ChangePassword = () => {
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
@@ -14,21 +15,18 @@ const ChangePassword = () => {
       const { currentPassword, newPassword, confirmPassword } =
         Object.fromEntries(fd.entries());
       const token = localStorage.getItem("token");
-      const response = await fetch(
-        "http://localhost:5000/auth/changePassword",
-        {
-          method: "POST",
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            currentPassword,
-            newPassword,
-            confirmPassword,
-          }),
-        }
-      );
+      const response = await fetch(`${link}/auth/changePassword`, {
+        method: "POST",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+          confirmPassword,
+        }),
+      });
       const { success, error, message } = await response.json();
       if (success) {
         createToast(message, "success");
