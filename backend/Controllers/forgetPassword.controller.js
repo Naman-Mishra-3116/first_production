@@ -29,7 +29,7 @@ export const forgetPasswordControllerFunction = async (req, res) => {
       service: "gmail",
       auth: {
         user: "typingtestteam@gmail.com",
-        pass: "spuvmakgjzwxixyy",
+        pass: "uvaiwreyzuyxrzct",
       },
     });
 
