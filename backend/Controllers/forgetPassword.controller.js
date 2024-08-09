@@ -50,8 +50,6 @@ export const forgetPasswordControllerFunction = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .json({ message: error.message, error: true, success: false });
+    res.status(500).json({ message: error, error: true, success: false });
   }
 };
