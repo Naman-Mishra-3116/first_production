@@ -19,13 +19,14 @@ export const forgetPasswordControllerFunction = async (req, res) => {
     const link = `https://backend-gamma-wine.vercel.app/resetPassword/${oldUser._id}/${token}`;
     console.log(link);
     res.status(200).json({
-      message: "Please check your email for password reset link",
+      message: link,
       error: false,
       success: true,
     });
     console.log(link);
 
     const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
       service: "gmail",
       auth: {
         user: "typingtestteam@gmail.com",
