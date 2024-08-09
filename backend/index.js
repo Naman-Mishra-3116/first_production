@@ -8,9 +8,9 @@ import { getRouter } from "./Routes/getRouter.router.js";
 import { deleteRouter } from "./Routes/deleteRouter.router.js";
 
 const test = {
-  origin: [""],
-  methods: ["GET", "POST", "DELETE", "PATCH", "PUT"],
-  credentials: true,
+  origin: "*", 
+  methods: "GET, POST, PUT, DELETE, OPTIONS",
+  allowedHeaders: "Content-Type, Authorization",
 };
 
 /**
@@ -35,7 +35,7 @@ const PORT = process.env.PORT || 5000;
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(test));
 
 /**
  * @router = get for testing purpose.
