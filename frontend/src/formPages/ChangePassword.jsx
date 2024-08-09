@@ -1,10 +1,10 @@
 import React from "react";
-import Input from "../UI/Input";
 import { createToast } from "../../utils/createToast";
 import { useDispatch } from "react-redux";
 import { authFunction } from "../../Store/authentication.store";
 import { useNavigate } from "react-router-dom";
 import { link } from "../../utils/backLink";
+import PasswordInput from "../UI/PasswordInput";
 const ChangePassword = () => {
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
@@ -58,20 +58,17 @@ const ChangePassword = () => {
           Change Password
         </p>
         <form onSubmit={onClickChangePassword} className="mt-3">
-          <Input
+          <PasswordInput
             title="Current Password"
             name="currentPassword"
             id="currentPassword"
-            type="password"
           />
-          <Input
+          <PasswordInput
             title="New Password"
             name="newPassword"
             id="newPassword"
-            type="password"
           />
-          <Input
-            type={"password"}
+          <PasswordInput
             id="pass"
             name="confirmPassword"
             title={"Confirm New Password"}

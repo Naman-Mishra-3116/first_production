@@ -1,10 +1,10 @@
 import React from "react";
-import Input from "../UI/Input";
 import NavigationFor from "../UI/NavigationFor";
 import { createToast } from "../../utils/createToast";
 import { useNavigate } from "react-router-dom";
 import { link } from "../../utils/backLink";
-
+import PasswordInput from "../UI/PasswordInput";
+import Input from "../UI/Input";
 const Signup = () => {
   const navigateTo = useNavigate();
 
@@ -45,12 +45,7 @@ const Signup = () => {
         <form onSubmit={onSubmitSignupForm} className="mt-3">
           <Input title="Username" name="username" id="username" type="text" />
           <Input title="Email" name="email" id="email" type="email" />
-          <Input
-            type={"password"}
-            id="pass"
-            name="password"
-            title={"Password"}
-          />
+          <PasswordInput id="pass" name="password" title={"Password"} />
           <button
             type="submit"
             className="bg-[#1585e0] px-4 py-[10px] rounded-lg mt-[30px] hover:bg-[#369cef] mb-4"

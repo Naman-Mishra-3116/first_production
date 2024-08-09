@@ -6,6 +6,7 @@ import { createToast } from "../../utils/createToast";
 import { useDispatch } from "react-redux";
 import { authFunction } from "../../Store/authentication.store";
 import { link } from "../../utils/backLink.js";
+import PasswordInput from "../UI/PasswordInput.jsx";
 
 const Login = () => {
   const navigateTo = useNavigate();
@@ -70,12 +71,7 @@ const Login = () => {
         </p>
         <form onSubmit={onClickLoginButton} className="mt-3 mb-4">
           <Input title="Email" name="email" id="email" type="email" />
-          <Input
-            type={"password"}
-            id="pass"
-            name="password"
-            title={"Password"}
-          />
+          <PasswordInput id="pass" name="password" title={"Password"} />
           <button
             type="submit"
             className="bg-[#1585e0] px-4 py-[10px] rounded-lg mt-[30px] hover:bg-[#369cef]"
