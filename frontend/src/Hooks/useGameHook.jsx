@@ -97,7 +97,7 @@ export const useGameHook = function (duration) {
       prevIncorrectchars.current = errorChar;
       typedWord.current += 1;
       graphData.current.push({
-        wpm: Math.round((correctChar / 4) * (60 / duration)),
+        wpm: Math.round((correctChar / 5) * (60 / duration)),
         accuracy: Number.isNaN(
           Math.round((correctChar * 100) / (correctChar + errorChar))
         )

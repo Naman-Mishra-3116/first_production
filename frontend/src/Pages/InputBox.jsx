@@ -36,7 +36,7 @@ const InputBox = forwardRef(
       let timerInterval;
       if (timer === 0 && hasStarted === true) {
         data.current.push({
-          wpm: Math.round((correctChar / 4) * (60 / duration)),
+          wpm: Math.round((correctChar / 5) * (60 / duration)),
           accuracy: Math.round((correctChar * 100) / (correctChar + errorChar)),
           cWords: rightWords,
           iWords: wrongWords,
