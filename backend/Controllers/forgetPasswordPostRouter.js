@@ -18,7 +18,7 @@ export const forgetPasswordPostRouter = async (req, res) => {
     console.log(verify);
     const hashedPassword = await bcrypt.hash(password, 10);
     await User.updateOne({ _id: id }, { $set: { password: hashedPassword } });
-    res.redirect("http://localhost:5173/login");
+    res.redirect("https://typing-pink-three.vercel.app/login");
   } catch (error) {
     res
       .status(500)

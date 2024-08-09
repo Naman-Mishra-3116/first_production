@@ -16,7 +16,7 @@ export const forgetPasswordControllerFunction = async (req, res) => {
     const token = jwt.sign({ email: email, id: oldUser._id }, secret, {
       expiresIn: "30m",
     });
-    const link = `http://localhost:5000/resetPassword/${oldUser._id}/${token}`;
+    const link = `https://backend-gamma-wine.vercel.app/resetPassword/${oldUser._id}/${token}`;
     console.log(link);
     res.status(200).json({
       message: "Please check your email for password reset link",

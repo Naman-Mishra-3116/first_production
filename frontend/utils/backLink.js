@@ -1,1 +1,1 @@
-export const link = "http://localhost:5000";
+export const link = "https://backend-gamma-wine.vercel.app";
