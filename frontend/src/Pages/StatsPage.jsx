@@ -44,7 +44,7 @@ const StatsPage = () => {
     return (
       <div className="flex flex-col">
         <div className="w-[80%] self-center mt-3">
-          <h2 className="mt-10 text-2xl"> Please login to see your results</h2>
+          <h2 className="mt-10 text-lg"> Please login to see your results</h2>
         </div>
       </div>
     );
