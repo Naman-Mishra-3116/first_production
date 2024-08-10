@@ -2,7 +2,6 @@ import "./App.css";
 import {
   createBrowserRouter,
   RouterProvider,
-  useNavigate,
 } from "react-router-dom";
 import ErrorPage from "../src/Pages/ErrorPage";
 import About from "./Pages/About";
