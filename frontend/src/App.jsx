@@ -21,6 +21,7 @@ import { authFunction } from "../Store/authentication.store";
 import { getId } from "./utils/getId";
 import { link } from "../utils/backLink.js";
 import { useSelector } from "react-redux";
+import ResetPassword from "./Pages/ResetPassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,8 +63,8 @@ function App() {
   useEffect(() => {
     getLoginUserData();
   }, []);
-  const [currentKey, setCurrentKey] = useState(getId());
 
+  const [currentKey, setCurrentKey] = useState(getId());
   const router = createBrowserRouter([
     {
       path: "/",
@@ -76,10 +77,23 @@ function App() {
         },
         { path: "/leaderboard", element: <LeaderBoard /> },
         { path: "/about", element: <About /> },
-        { path: "/login", element: <Login /> },
+        {
+          path: "/login",
+          element:
+            isValid === false ? (
+              <Login />
+            ) : (
+              <HomePage key={currentKey} updateKey={setCurrentKey} />
+            ),
+        },
         {
           path: "/signup",
-          element: <Signup />,
+          element:
+            isValid === false ? (
+              <Signup />
+            ) : (
+              <HomePage key={currentKey} updateKey={setCurrentKey} />
+            ),
         },
         {
           path: "/stats",
@@ -102,6 +116,15 @@ function App() {
           ],
         },
       ],
+    },
+    {
+      path: "/hidden/:id/:token",
+      element:
+        isValid === false ? (
+          <ResetPassword />
+        ) : (
+          <HomePage key={currentKey} updateKey={setCurrentKey} />
+        ),
     },
   ]);
 

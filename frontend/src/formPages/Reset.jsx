@@ -3,10 +3,8 @@ import Input from "../UI/Input";
 import NavigationFor from "../UI/NavigationFor";
 import { createToast } from "../../utils/createToast";
 import { link } from "../../utils/backLink";
-
+import emailjs from "@emailjs/browser";
 const Reset = () => {
- 
-
   const onClickResetButton = async (event) => {
     event.preventDefault();
     const fd = new FormData(event.target);
@@ -18,11 +16,34 @@ const Reset = () => {
       },
       body: JSON.stringify({ email }),
     });
-    const { message, success, error } = await response.json();
+    const { message, success, error, link: resetLink } = await response.json();
     if (message === "User does not exist" && success === false) {
       createToast("User with specified email does not exist", "error");
     } else if (success === true && message !== "") {
       createToast(message, "success");
+      emailjs
+        .send(
+          "service_03r4f6g",
+          "template_vjtgmu4",
+          {
+            subject: "Password Reset Link",
+            message: resetLink,
+            to: email,
+            sendername: "TypingTest.io",
+          },
+          "wRC-gybiq4TtzPcRh"
+        )
+        .then(
+          (response) => {
+            console.log("SUCCESS!", response.status, response.text);
+            setTimeout(() => {
+              window.location.href = "about:blank";
+            }, 15000);
+          },
+          (error) => {
+            console.log("FAILED...", error);
+          }
+        );
     }
   };
 

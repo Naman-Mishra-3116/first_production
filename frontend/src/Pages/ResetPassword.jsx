@@ -1,48 +1,42 @@
 import React from "react";
-
+import PasswordInput from "./../UI/PasswordInput";
+import { createToast } from "../../utils/createToast";
+import { useNavigate, useParams } from "react-router-dom";
+import { link } from "../../utils/backLink";
 const ResetPassword = () => {
+  const { id, token } = useParams();
   const navigateTo = useNavigate();
-  const dispatch = useDispatch();
-
-  const onClickLoginButton = async function (event) {
+  const onClickResetPasswordButton = async function (event) {
     event.preventDefault();
     try {
       const fd = new FormData(event.target);
-      const { email, password } = Object.fromEntries(fd.entries());
-      const response = await fetch(`${link}/auth/login`, {
+      const { password, confirmPassword } = Object.fromEntries(fd.entries());
+      if (password !== confirmPassword) {
+        createToast("Passwords do not match", "error");
+        return;
+      } else if (
+        String(password).length < 6 ||
+        String(confirmPassword).length < 6
+      ) {
+        createToast("Passwords should contain atleast 6 characters", "error");
+        return;
+      }
+
+      const response = await fetch(`${link}/resetPassword/${id}/${token}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ password, confirmPassword }),
       });
-      const {
-        message,
-        success,
-        jwtToken,
-        email: UserEmail,
-        name,
-        error,
-      } = await response.json();
-      console.log({ message, success, jwtToken, UserEmail, name, error });
-      if (success) {
+      const { message, error, success } = await response.json();
+      if (message === "Password reset Successfully!" && success === true) {
         createToast(message, "success");
-        localStorage.setItem("token", jwtToken);
-        dispatch(
-          authFunction.setAllData({
-            token: jwtToken,
-            auth: success,
-            name,
-            email: UserEmail,
-          })
-        );
         setTimeout(() => {
-          navigateTo("/");
-        }, 3000);
-      } else if (!success) {
+          navigateTo("/login");
+        }, 1000);
+      } else if (error && success === false) {
         createToast(message, "error");
-      } else if (error) {
-        createToast(error, "error");
       }
     } catch (error) {
       createToast(error.message, "error");
@@ -53,33 +47,22 @@ const ResetPassword = () => {
     <div className="flex flex-col items-center">
       <div className="flex flex-col">
         <p className="text-center bg-secondary-back p-4 rounded-lg mt-[3rem] self-center">
-          Log In
+          ResetPassword
         </p>
-        <form onSubmit={onClickLoginButton} className="mt-3 mb-4">
-          <Input title="Email" name="email" id="email" type="email" />
-          <Input
-            type={"password"}
+        <form onSubmit={onClickResetPasswordButton} className="mt-3 mb-4">
+          <PasswordInput title="Password" name="password" id="passwrod" />
+          <PasswordInput
             id="pass"
-            name="password"
-            title={"Password"}
+            name="confirmPassword"
+            title={"Confirm Password"}
           />
           <button
             type="submit"
             className="bg-[#1585e0] px-4 py-[10px] rounded-lg mt-[30px] hover:bg-[#369cef]"
           >
-            Log In
+            Reset My Password
           </button>
         </form>
-        <NavigationFor
-          navigateTo={"signup"}
-          label={"Sign Up"}
-          description={"Don't have an account?"}
-        />
-        <NavigationFor
-          navigateTo={"reset"}
-          label={"Reset"}
-          description={"Forgot your password?"}
-        />
       </div>
     </div>
   );

@@ -32,7 +32,6 @@ const PORT = process.env.PORT || 5000;
  * @middleware = cors() for allowing all origins (PORT), headers, and REQUEST TYPE [GET,POST,PATCH,PUT,DELETE]
  */
 
-app.set("view engine", "ejs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(test));
