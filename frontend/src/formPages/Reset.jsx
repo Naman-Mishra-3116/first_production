@@ -4,7 +4,10 @@ import NavigationFor from "../UI/NavigationFor";
 import { createToast } from "../../utils/createToast";
 import { link } from "../../utils/backLink";
 import emailjs from "@emailjs/browser";
+import { useNavigate } from "react-router-dom";
 const Reset = () => {
+
+  const navigate = useNavigate();
   const onClickResetButton = async (event) => {
     event.preventDefault();
     const fd = new FormData(event.target);
@@ -36,9 +39,10 @@ const Reset = () => {
         .then(
           (response) => {
             console.log("SUCCESS!", response.status, response.text);
-            setTimeout(() => {
-              window.location.href = "about:blank";
-            }, 15000);
+            setTimeout(()=>{
+              navigate("/8f28ef12-a727-4f54-9bd0-9e70dc577d19");
+            })
+            
           },
           (error) => {
             console.log("FAILED...", error);

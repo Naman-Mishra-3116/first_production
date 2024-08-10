@@ -22,6 +22,7 @@ import { getId } from "./utils/getId";
 import { link } from "../utils/backLink.js";
 import { useSelector } from "react-redux";
 import ResetPassword from "./Pages/ResetPassword";
+import Thankyou from "./UI/Thankyou.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -124,6 +125,15 @@ function App() {
           <ResetPassword />
         ) : (
           <HomePage key={currentKey} updateKey={setCurrentKey} />
+        ),
+    },
+    {
+      path: "/8f28ef12-a727-4f54-9bd0-9e70dc577d19",
+      element:
+        isValid === true ? (
+          <HomePage key={currentKey} updateKey={setCurrentKey} />
+        ) : (
+          <Thankyou />
         ),
     },
   ]);

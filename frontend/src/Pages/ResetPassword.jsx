@@ -44,10 +44,10 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mt-[3rem]">
       <div className="flex flex-col">
         <p className="text-center bg-secondary-back p-4 rounded-lg mt-[3rem] self-center">
-          ResetPassword
+          Reset Your Password
         </p>
         <form onSubmit={onClickResetPasswordButton} className="mt-3 mb-4">
           <PasswordInput title="Password" name="password" id="passwrod" />

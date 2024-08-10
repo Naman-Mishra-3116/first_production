@@ -13,8 +13,6 @@ export const forgetPasswordPostRouter = async (req, res) => {
         .status(200)
         .json({ message: "User does not exist", success: false, error: true });
     }
-
-    console.log("password is: ", password);
     const secret = process.env.JWT_SECRET + oldUser.password;
     const verify = jwt.verify(token, secret);
 
@@ -27,7 +25,6 @@ export const forgetPasswordPostRouter = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    console.log(error.message);
     res
       .status(200)
       .json({ message: error.message, success: false, error: true });
