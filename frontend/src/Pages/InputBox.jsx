@@ -59,7 +59,7 @@ const InputBox = forwardRef(
         />
 
         <div className="h-[60px] bg-secondary-back p-5 mr-[12px] rounded-md w-[120px] text-[22px] flex justify-center items-center">
-          <span>
+          <span className="transition-opacity duration-300 ease-in-out">
             {wpm ? (
               <>
                 {calculateWPM()} <span className="text-[14px]">WPM</span>

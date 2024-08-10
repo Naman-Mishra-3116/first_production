@@ -171,6 +171,9 @@ const LineGraph = ({ data, time, errorChar, correctChar, raw }) => {
           display: true,
           color: "#1f1f1f",
         },
+        ticks: {
+          stepSize: 2,
+        },
       },
       y1: {
         id: "y1",
