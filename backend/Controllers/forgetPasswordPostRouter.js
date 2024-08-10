@@ -11,7 +11,7 @@ export const forgetPasswordPostRouter = async (req, res) => {
     if (!oldUser) {
       return res
         .status(200)
-        .json({ message: "User does not exist", success: true, error: false });
+        .json({ message: "User does not exist", success: false, error: true });
     }
 
     console.log("password is: ", password);
