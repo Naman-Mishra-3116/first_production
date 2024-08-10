@@ -31,7 +31,7 @@ import Thankyou from "./UI/Thankyou.jsx";
 function App() {
   const dispatch = useDispatch();
   const isValid = useSelector((state) => state.valid.isAuthticated);
-  const navigate = useNavigate();
+  
 
   const getLoginUserData = async function () {
     try {
