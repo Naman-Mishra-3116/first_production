@@ -1,5 +1,9 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useNavigate,
+} from "react-router-dom";
 import ErrorPage from "../src/Pages/ErrorPage";
 import About from "./Pages/About";
 import Login from "./formPages/Login";
@@ -27,6 +31,7 @@ import Thankyou from "./UI/Thankyou.jsx";
 function App() {
   const dispatch = useDispatch();
   const isValid = useSelector((state) => state.valid.isAuthticated);
+  const navigate = useNavigate();
 
   const getLoginUserData = async function () {
     try {
@@ -75,6 +80,15 @@ function App() {
         {
           index: true,
           element: <HomePage key={currentKey} updateKey={setCurrentKey} />,
+        },
+        {
+          path: "/8f28ef12-a727-4f54-9bd0-9e70dc577d19",
+          element:
+            isValid === true ? (
+              <HomePage key={currentKey} updateKey={setCurrentKey} />
+            ) : (
+              <Thankyou />
+            ),
         },
         { path: "/leaderboard", element: <LeaderBoard /> },
         { path: "/about", element: <About /> },
@@ -125,15 +139,6 @@ function App() {
           <ResetPassword />
         ) : (
           <HomePage key={currentKey} updateKey={setCurrentKey} />
-        ),
-    },
-    {
-      path: "/8f28ef12-a727-4f54-9bd0-9e70dc577d19",
-      element:
-        isValid === true ? (
-          <HomePage key={currentKey} updateKey={setCurrentKey} />
-        ) : (
-          <Thankyou />
         ),
     },
   ]);
