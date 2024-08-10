@@ -41,7 +41,7 @@ const Reset = () => {
             console.log("SUCCESS!", response.status, response.text);
             setTimeout(()=>{
               navigate("/8f28ef12-a727-4f54-9bd0-9e70dc577d19");
-            })
+            },1000);
             
           },
           (error) => {

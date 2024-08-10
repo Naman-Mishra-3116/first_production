@@ -81,24 +81,7 @@ function App() {
           index: true,
           element: <HomePage key={currentKey} updateKey={setCurrentKey} />,
         },
-        {
-          path: "/dcf32beb-a859-457e-9cb3-4f5d189d9506/:id/:token",
-          element:
-            isValid === false ? (
-              <ResetPassword />
-            ) : (
-              <HomePage key={currentKey} updateKey={setCurrentKey} />
-            ),
-        },
-        {
-          path: "/8f28ef12-a727-4f54-9bd0-9e70dc577d19",
-          element:
-            isValid === true ? (
-              <HomePage key={currentKey} updateKey={setCurrentKey} />
-            ) : (
-              <Thankyou />
-            ),
-        },
+
         { path: "/leaderboard", element: <LeaderBoard /> },
         { path: "/about", element: <About /> },
         {
@@ -140,6 +123,14 @@ function App() {
           ],
         },
       ],
+    },
+    {
+      path: "/dcf32beb-a859-457e-9cb3-4f5d189d9506/:id/:token",
+      element: isValid === false ? <ResetPassword /> : <ErrorPage />,
+    },
+    {
+      path: "/8f28ef12-a727-4f54-9bd0-9e70dc577d19",
+      element: isValid === true ? <ErrorPage /> : <Thankyou />,
     },
   ]);
 

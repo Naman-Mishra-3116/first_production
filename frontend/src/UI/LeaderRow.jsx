@@ -9,7 +9,9 @@ const LeaderRow = ({ isOdd, Rank, user, wpm, accuracy, time, taken }) => {
       <td className={`p-[9.5px] ${isOdd ? "bg-secondary-back" : null}`}>
         {user}
       </td>
-      <td className={`p-[9.5px] ${isOdd ? "bg-secondary-back" : null}`}>{wpm}</td>
+      <td className={`p-[9.5px] ${isOdd ? "bg-secondary-back" : null}`}>
+        {wpm}
+      </td>
       <td className={`p-[9.5px] ${isOdd ? "bg-secondary-back" : null}`}>
         {" "}
         {accuracy}
@@ -17,7 +19,7 @@ const LeaderRow = ({ isOdd, Rank, user, wpm, accuracy, time, taken }) => {
       </td>
 
       <td className={`p-[9.5px] ${isOdd ? "bg-secondary-back" : null} `}>
-        {Math.floor(time / 60)}:{time % 60}
+        {Math.floor(time / 60)}:{String(time % 60).padStart(2, "0")}
       </td>
       <td className={`p-[9.5px] ${isOdd ? "bg-secondary-back" : null}`}>
         {taken}
