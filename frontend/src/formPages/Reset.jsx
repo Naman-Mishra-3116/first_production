@@ -27,10 +27,7 @@ const Reset = () => {
           "template_vjtgmu4",
           {
             subject: "Password Reset Link",
-            message: (
-              <a href={resetLink}>Click on this link to reset your password</a>
-            ),
-            // message: resetLink,
+            message: resetLink,
             to: email,
             sendername: "TypingTest.io",
           },

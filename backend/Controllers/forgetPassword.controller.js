@@ -13,7 +13,7 @@ export const forgetPasswordControllerFunction = async (req, res) => {
 
     const secret = process.env.JWT_SECRET + oldUser.password;
     const token = jwt.sign({ email: email, id: oldUser._id }, secret, {
-      expiresIn: "30m",
+      expiresIn: "10m",
     });
     const link = `https://typing-pink-three.vercel.app/hidden/${oldUser._id}/${token}`;
 
