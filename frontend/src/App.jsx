@@ -125,11 +125,11 @@ function App() {
       ],
     },
     {
-      path: "/dcf32beb-a859-457e-9cb3-4f5d189d9506/:id/:token",
+      path: "/hidden/:id/:token",
       element: isValid === false ? <ResetPassword /> : <ErrorPage />,
     },
     {
-      path: "/8f28ef12-a727-4f54-9bd0-9e70dc577d19",
+      path: "/say/thankyouPage",
       element: isValid === true ? <ErrorPage /> : <Thankyou />,
     },
   ]);
