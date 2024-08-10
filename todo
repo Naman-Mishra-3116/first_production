@@ -1,3 +1,6 @@
--speed with elapsing time should be fixed.
--reset password api devlopment.
--shift from nodemailer to email.js
+-speed with elapsing time should be fixed. @done
+-reset password api devlopment. @done
+-shift from nodemailer to email.js @done
+
+- cryptobyte Encyption on protected routes.
+- 

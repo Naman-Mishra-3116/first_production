@@ -15,7 +15,7 @@ export const forgetPasswordControllerFunction = async (req, res) => {
     const token = jwt.sign({ email: email, id: oldUser._id }, secret, {
       expiresIn: "10m",
     });
-    const link = `https://typing-cdo6bd6u6-naman-mishra-3116s-projects.vercel.app/hidden/${oldUser._id}/${token}`;
+    const link = `https://typing-cdo6bd6u6-naman-mishra-3116s-projects.vercel.app/c0348c00-2862-47dd-ad81-a8952b6f6cf5/${oldUser._id}/${token}`;
 
     res.status(200).json({
       message: "Check your email for password reset link",

@@ -6,7 +6,6 @@ import { link } from "../../utils/backLink";
 import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 const Reset = () => {
-
   const navigate = useNavigate();
   const onClickResetButton = async (event) => {
     event.preventDefault();
@@ -39,10 +38,9 @@ const Reset = () => {
         .then(
           (response) => {
             console.log("SUCCESS!", response.status, response.text);
-            setTimeout(()=>{
-              navigate("/say/thankyouPage");
-            },1000);
-            
+            setTimeout(() => {
+              navigate("/379c207b-4081-4218-9708-5598ad7d060a");
+            }, 1000);
           },
           (error) => {
             console.log("FAILED...", error);
