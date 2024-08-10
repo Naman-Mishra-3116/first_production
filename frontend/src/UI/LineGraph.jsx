@@ -172,7 +172,7 @@ const LineGraph = ({ data, time, errorChar, correctChar, raw }) => {
           color: "#1f1f1f",
         },
         ticks: {
-          stepSize: 2,
+          stepSize: Math.floor(time / 10) <= 10 ? Math.floor(time / 10) : 5,
         },
       },
       y1: {

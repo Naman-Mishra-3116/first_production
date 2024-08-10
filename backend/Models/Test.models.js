@@ -39,8 +39,17 @@ const TestSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    expires: 7200,
   },
 });
 
-export const Test = new mongoose.model("tests", TestSchema);
+const Test = new mongoose.model("tests", TestSchema);
+Test.collection
+  .createIndex({ createdAt: 1 }, { expireAfterSeconds: 21600 })
+  .then(() => {
+    console.log("TTL index created successfully");
+  })
+  .catch((err) => {
+    console.error("Error creating TTL index:", err);
+  });
+
+export { Test };
