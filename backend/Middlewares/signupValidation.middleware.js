@@ -11,14 +11,12 @@ export const signupValidationMiddleware = function (req, res, next) {
 
   const { error } = schema.validate({ username, email, password });
   if (error) {
-    return res
-      .status(400)
-      .json({
-        message:
-          "Password should be 6 digit long and usename should contain 8 Character",
-        success: false,
-        error: error.message,
-      });
+    return res.status(400).json({
+      message:
+        "Password should be 6 digit long and usename should contain 8 Character",
+      success: false,
+      error: error.message,
+    });
   }
 
   next();
